@@ -6,6 +6,12 @@ class PeoplesService {
   constructor() {
     this.peoples = [
       {
+        name: 'juan',
+        type: 'desing',
+        age: 23,
+        area: 'hotel',
+      },
+      {
         name: 'daniel',
         type: 'employee',
         age: 23,
