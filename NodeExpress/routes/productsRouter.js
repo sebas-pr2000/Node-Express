@@ -16,10 +16,13 @@ const service = new ProductsService(); // creamos una nueva clase que contenga t
 
 //                                     SEPARANDO LA LOGICA
 
-router.get('/', async (req, res) => {
-  const products = await service.find();
-
-  res.status(200).json(products); // devolvemos el array de productos
+router.get('/', async (req, res, error) => {
+  try {
+    const products = await service.find();
+    res.status(200).json(products); // devolvemos el array de productos
+  } catch (error) {
+    next(error);
+  }
 });
 
 //                        ANTES DE SEPARAR LA LOGICA
@@ -87,10 +90,18 @@ router.patch(
   }
 );
 
-router.delete('/:id', async (req, res) => {
-  const { id } = req.params;
-  const product = await service.delete(id);
-  res.status(200).json(id);
-});
+router.delete(
+  '/:id',
+  validatorHandler(getProductSchema, 'params'),
+  async (req, res, next) => {
+    const { id } = req.params;
+    const product = await service.delete(id);
+    res.status(200).json(product);
+    try {
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 module.exports = router;
