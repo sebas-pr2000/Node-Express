@@ -31,6 +31,7 @@ const options = {
 };
 
 //app.use(cors(options)); // configuracion para decidir quien puede solicitar la API
+app.use(cors());
 
 app.use(logErrors);
 app.use(boomErrorHandler); //usando boom
