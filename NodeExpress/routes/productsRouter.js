@@ -16,7 +16,7 @@ const service = new ProductsService(); // creamos una nueva clase que contenga t
 
 //                                     SEPARANDO LA LOGICA
 
-router.get('/', async (req, res, error) => {
+router.get('/', async (req, res, next) => {
   try {
     const products = await service.find();
     res.status(200).json(products); // devolvemos el array de productos

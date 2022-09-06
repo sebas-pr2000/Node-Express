@@ -74,7 +74,7 @@ class ProductsService {
       throw boom.notFound('product not Found');
     }
     this.products.splice(index, 1);
-    return { id };
+    return 'product delete';
   }
 }
 module.exports = ProductsService;
